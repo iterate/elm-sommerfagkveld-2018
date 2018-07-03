@@ -40,11 +40,11 @@ view : Model -> Html Msg
 view model =
     div []
         [ h1 [] [ text "Min teller" ]
-        , button [ onClick Double ] [ text "*2" ]
+          -- , button [ onClick Double ] [ text "*2" ]
         , button [ onClick Increment ] [ text "+1" ]
         , div [] [ text (toString model.counter) ]
         , button [ onClick Decrement ] [ text "-1" ]
-        , button [ onClick Half ] [ text "/2" ]
+          -- , button [ onClick Half ] [ text "/2" ]
         ]
 
 
