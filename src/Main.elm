@@ -5,12 +5,12 @@ import Html.Events exposing (..)
 
 
 type alias Model =
-    Int
+    { counter : Int }
 
 
 init : Model
 init =
-    0
+    { counter = 0 }
 
 
 type Msg
@@ -22,10 +22,10 @@ update : Msg -> Model -> Model
 update msg model =
     case msg of
         Increment ->
-            model + 1
+            { model | counter = model.counter + 1 }
 
         Decrement ->
-            model - 1
+            { model | counter = model.counter - 1 }
 
 
 view : Model -> Html Msg
@@ -33,7 +33,7 @@ view model =
     div []
         [ h1 [] [ text "Min teller" ]
         , button [ onClick Increment ] [ text "+1" ]
-        , div [] [ text (toString model) ]
+        , div [] [ text (toString model.counter) ]
         , button [ onClick Decrement ] [ text "-1" ]
         ]
 
