@@ -1,18 +1,47 @@
 module Main exposing (main)
 
 import Html exposing (..)
+import Html.Events exposing (..)
 
 
-hello : String -> String
-hello name =
-    "Hello: " ++ name
+type alias Model =
+    Int
 
 
-main : Html msg
-main =
+init : Model
+init =
+    0
+
+
+type Msg
+    = Increment
+    | Decrement
+
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        Increment ->
+            model + 1
+
+        Decrement ->
+            model - 1
+
+
+view : Model -> Html Msg
+view model =
     div []
-        [ h1 [] [ text "Overskrift" ]
-        , p [] [ text "Hello, World!" ]
-        , p [] [ text (hello "Sindre") ]
-        , footer [] [ text "Sindre Johansen" ]
+        [ h1 [] [ text "Min teller" ]
+        , button [ onClick Increment ] [ text "+1" ]
+        , div [] [ text (toString model) ]
+        , button [ onClick Decrement ] [ text "-1" ]
         ]
+
+
+main : Program Never Model Msg
+main =
+    Html.beginnerProgram
+        { model = init
+        , view = view
+        , update = update
+        }
